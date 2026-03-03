@@ -1,0 +1,754 @@
+:root {
+  --green-main: #1b5e20;
+  --green-soft: #a5d6a7;
+  --brown-dark: #3e2723;
+  --brown-light: #8d6e63;
+  --white: #ffffff;
+  --bg-light: #f6f5f3;
+  --text-main: #1f2933;
+  --text-muted: #6b7280;
+  --border-soft: #e0e0e0;
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-main);
+  background-color: var(--bg-light);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: #d4d93e
+;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo-text {
+  font-family: "Anton", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.06em;
+}
+
+.logo-eco {
+  color: #0F3D2E;
+}
+
+.logo-connect {
+  color: var(--white);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #4f7637;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.nav-links a:hover {
+  opacity: 0.85;
+}
+
+.nav-cta {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--green-soft);
+  background-color: rgba(27, 94, 32, 0.2);
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  background-image: url("https://i.ibb.co/rGC3hH7n/PORTADA.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content {
+  position: relative;
+  padding: 5rem 0 4rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.15);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.hero-title {
+  font-family: "Anton", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 5.4vw, 3.4rem);
+  line-height: 1.05;
+  margin-bottom: 1.3rem;
+  letter-spacing: 0.06em;
+}
+
+.hero-subtitle {
+  max-width: 620px;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 1.7rem;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.btn-primary {
+  background-color: var(--green-main);
+  color: var(--white);
+  box-shadow: 0 10px 20px rgba(27, 94, 32, 0.35);
+}
+
+.btn-primary:hover {
+  background-color: #144219;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 25px rgba(27, 94, 32, 0.4);
+}
+
+.btn-outline {
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  color: var(--white);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Secciones */
+.section {
+  padding: 4rem 0;
+}
+
+.section-alt {
+  background-color: #f0ebe5;
+}
+
+.section-title {
+  font-family: "Anton", system-ui, sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: negro;
+  letter-spacing: 0.06em;
+}
+
+.section-text {
+  font-size: 0.98rem;
+  color: black;
+  max-width: 640px;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Layouts */
+.two-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 2.4fr) minmax(0, 1.2fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* Cards */
+.card {
+  background-color: var(--white);
+  border-radius: 1rem;
+  padding: 1.5rem 1.6rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.highlight-card {
+  background: linear-gradient(145deg, #f0ebe5, #ffffff);
+  border-color: rgba(78, 52, 46, 0.08);
+}
+
+.card-title {
+  font-family: "Anton", system-ui, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--brown-dark);
+  letter-spacing: 0.05em;
+}
+
+.card-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* CONÓCENOS (sin imagen de fondo) */
+#quienes-somos {
+  position: relative;
+  overflow: hidden;
+  background-color: #d4d93e;
+}
+
+/* IMPACTO con imagen de fondo */
+#impacto {
+  position: relative;
+  color: #d4d93e;
+  overflow: hidden;
+}
+
+#impacto::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://i.ibb.co/fzkSfgph/IMPACTO-ECO-C.png");
+  background-size: cover;
+  background-position: center;
+  filter: blur(3px);
+  opacity: 0.4;
+}
+
+#impacto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #d4d93e;
+  opacity: 0.3;
+}
+
+#impacto > .container {
+  position: relative;
+  z-index: 1;
+}
+
+#impacto .section-title,
+#impacto .section-text {
+  color: var(--green-main);
+}
+
+#impacto .section-text {
+  margin-bottom: 2rem;
+}
+
+/* DEMO RESIDUOS (sin imagen, solo color) */
+#demo-residuos {
+  background-color: #f9af3c;
+}
+
+#demo-residuos .section-text {
+  margin-bottom: 2rem;
+}
+
+/* BENEFICIOS con imagen CONÓCENOS */
+#beneficios {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Capa 1: solo la IMAGEN de fondo */
+#beneficios::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://i.ibb.co/ynxh6xzt/choose-me.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(5px);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* Capa 2: el VERDE transparente encima de la imagen */
+#beneficios::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f8f7e5;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* Contenido arriba de todo */
+#beneficios > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* FAQ con imagen de PREGUNTAS FRECUENTES */
+#faq {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Capa 1: imagen de fondo */
+#faq::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("https://i.ibb.co/Xff8DXHJ/yaquieroacabar.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(3px);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+/* Capa 2: degradado claro encima (si quieres) */
+#faq::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #d4d93e;
+  opacity: 0.3;
+  z-index: 1;
+}
+
+/* Contenido arriba */
+#faq > .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Métricas */
+.metric-card {
+  background-color: var(--white);
+  border-radius: 0.9rem;
+  padding: 1.3rem 1.2rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  text-align: left;
+}
+
+.metric-value {
+  font-family: "Anton", system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green-main);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.04em;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* Demo residuos */
+.waste-card {
+  background-color: #f8f7e5;
+  border-radius: 0.9rem;
+  padding: 1.3rem 1.2rem;
+  box-shadow: var(--shadow-soft);
+  border-left: 4px solid black;
+  font-size: 0.95rem;
+}
+
+.waste-type {
+  font-family: "Anton", system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: black;
+  letter-spacing: 0.04em;
+}
+
+.waste-card p {
+  margin-bottom: 0.2rem;
+}
+
+/* Beneficios lista */
+.benefits-list {
+  list-style: none;
+  margin-top: 1rem;
+}
+
+.benefits-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  color: white;
+}
+
+.benefits-list li::before {
+  content: "●";
+  position: absolute;
+  left: 0;
+  top: 0.15rem;
+  font-size: 0.7rem;
+  color: black;
+}
+
+/* Testimonios */
+.testimonial-card {
+  background-color: #f8f7e5;
+  border-radius: 1rem;
+  padding: 1.4rem 1.4rem 1.3rem;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  font-size: 0.95rem;
+}
+
+.testimonial-text {
+  color: var(--text-main);
+  margin-bottom: 0.7rem;
+}
+
+.testimonial-author {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* FAQ contenido */
+.faq-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.faq-item {
+  background-color: var(--white);
+  border-radius: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border-soft);
+}
+
+.faq-question {
+  font-family: "Anton", system-ui, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--green-main);
+  letter-spacing: 0.04em;
+}
+
+.faq-answer {
+  font-size: 0.93rem;
+  color: var(--text-muted);
+}
+
+/* Formulario */
+.form-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.form-card {
+  padding: 1.8rem 1.7rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: var(--brown-dark);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border-soft);
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: #fdfdfc;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--green-main);
+  box-shadow: 0 0 0 1px rgba(27, 94, 32, 0.15);
+}
+
+.form-status {
+  margin-top: 0.8rem;
+  font-size: 0.88rem;
+}
+
+.form-status.success {
+  color: var(--green-main);
+}
+
+.form-status.error {
+  color: #b3261e;
+}
+
+/* Footer */
+.footer {
+  background-color: #d4d93e;
+  color: #4f7637;
+  padding: 1.5rem 0;
+}
+
+.footer-content {
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+  .navbar-content {
+    flex-direction: row;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    min-height: 70vh;
+  }
+
+  .two-columns,
+  .form-container {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-content {
+    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-title {
+    font-size: 2.1rem;
+  }
+
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+/* ===== Estilos específicos de BENEFICIOS ===== */
+#beneficios .section-title {
+  color: #ffffff;   /* blanco */
+  font-weight: 700; /* negritas */
+}
+
+#beneficios .section-text {
+  color: #ffffff;   /* blanco */
+  font-weight: 400; /* normal */
+}
+
+#beneficios .card-title {
+  color: #1f2933;
+}
+
+#faq .section-title {
+  color: var(--green-main);   /* blanco */
+}
+
+/* Card grande crema en QUIÉNES SOMOS */
+.card--quienes-amplia {
+  background: #f8f7e5;      /* color grande */
+  border-radius: 1.5rem;
+  padding: 2.5rem 2.6rem;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Mini card naranja en QUIÉNES SOMOS */
+.card--quienes-mini {
+  background: #f9af3c;      /* naranja */
+  color: #1f2933;           /* texto oscuro */
+  min-height: 398px;  /* ajusta este número para hacerla más larga */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* opcional: centra el texto verticalmente */
+
+}
+
+/* Ajuste para que los textos dentro respeten colores */
+.card--quienes-mini .card-title,
+.card--quienes-mini .card-text {
+  color: #1f2933;
+}
+
+#impacto .section-title {
+  font-size: 4rem;  /* cambia este valor al tamaño que quieras */
+}
+
+/* Solo el título "Demo de residuos disponibles" */
+#demo-residuos .section-title {
+  color: #f8f7e5;    /* el color que quieras */
+  font-size: 4rem; /* ajusta el tamaño: 2rem, 2.4rem, etc. */
+}
+
+/* Solo el título "Pero..¿Por qué escogernos?" */
+#beneficios .section-title {
+  color: #f8f7e5;    /* el color que quieras */
+
+}
+
+/* Texto general de BENEFICIOS (fuera de la mini card) */
+#beneficios .section-text {
+  color: #1f2933;     /* color que quieras */
+  font-size: 1rem;    /* ajusta tamaño: 0.95rem, 1.1rem, etc. */
+}
+
+#beneficios .benefits-list li {
+  color: black;      /* mismo color u otro */
+  font-size: 1rem;
+}
+
+/* Mini card general de BENEFICIOS (Casos de uso típicos) */
+#beneficios .card {
+  background-color: #4f7637;
+  color: #f8f7e5;
+}
+
+/* Mini card SOLO del título "PERO..¿POR QUÉ ESCOGERNOS?" */
+#beneficios .card.card--beneficios-titulo {
+  background-color: #4f7637;  /* color distinto */
+}
+
+#beneficios .card-title,
+#beneficios .card-text {
+  color: #f8f7e5;
+}
+
+.card--beneficios-titulo {
+  display: inline-block;
+  max-width: 100%;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-soft);
+  margin-bottom:1rem;
+
+}
+
+.card--beneficios-titulo .section-title {
+  margin: 0;
+  white-space: normal;
+
+}
+
+#testimonios {
+  background-color: #4f7637;  /* nuevo fondo de toda la sección */
+}
+
+/* Color del título de la sección */
+#testimonios .section-title {
+  color: #f8f7e5;            /* el color que quieras para "LO QUE DICEN LAS EMPRESAS" */
+}
+
+#faq .section-title {
+  font-size: 4rem;   /* sube o baja este valor hasta que te guste */
+}
+
+#contacto {
+  background-color: #f9af3c;  /* color de fondo de TODA la sección */
+}
+
+#contacto .section-title {
+  color: #f8f7e5;  /* el color que quieras para "REGISTRA TU EMPRESA" */
+  font-size: 5rem;  /* hazlo más grande, prueba 2.2–2.8rem */
+}
+}
+
+
