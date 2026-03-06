@@ -151,8 +151,8 @@ img {
 }
 
 .hero-subtitle {
-  max-width: 620px;
-  font-size: 0.9rem;
+  max-width: 700px;
+  font-size: 0.8rem;
   color: rgba(255, 255, 255, 0.88);
   margin: 0 auto 1.7rem;
 }
@@ -348,7 +348,8 @@ img {
 
 #impacto .section-text {
   margin-bottom: 2rem;
-
+  max-width: 900px;
+  margin: 0 auto 1.7rem;
 }
 
 /* Mini cards de la sección Impacto */
@@ -391,6 +392,10 @@ font-weight: 650;
 #demo-residuos .section-text {
   margin-bottom: 2rem;
   color: #fffae5;
+  max-width: 900px;
+  margin: 0 auto 1.7rem;
+  font-size: 0.9rem;
+
 }
 
 /* BENEFICIOS con imagen CONÓCENOS */
@@ -707,12 +712,6 @@ textarea:focus {
   padding-top: 0rem;    /* baja este valor hasta que te guste */
 }
 
-
-#beneficios .section-text {
-  color: #1A1A1A;   /* blanco */
-  font-weight: 400; /* normal */
-}
-
 #faq .section-title {
   color: #2C3E34;   /* blanco */
 }
@@ -727,31 +726,41 @@ textarea:focus {
   
 }
 
-/* Mini card naranja en QUIÉNES SOMOS */
+/* Mini card verde en QUIÉNES SOMOS */
 .card--quienes-mini {
   background: #1F3D2B;      /* naranja */
   color: #ffffff;           /* texto oscuro */
-  min-height: 260px;  /* ajusta este número para hacerla más larga */
+  min-height: 315px;  /* ajusta este número para hacerla más larga */
   display: flex;
   flex-direction: column;
   justify-content: center; /* opcional: centra el texto verticalmente */
   position: absolute;
   right: 3rem;        /* qué tanto se mete hacia la crema */
-  top: 50%;           /* altura relativa a la crema */
-  transform: translateY(-50%);
+  top: 11rem;           /* altura relativa a la crema */
   width: 360px;       /* ancho de la card verde */
+  max-height: none;
+  overflow: hidden;
+
 }
 
 
 /* Ajuste para que los textos dentro respeten colores */
-.card--quienes-mini .card-title,
+.card--quienes-mini .card-title{
+  color: white;
+  font-size: 1.7rem;
+  white-space: nowrap;  
+}
+
+/* Ajuste para que los textos dentro respeten colores */
 .card--quienes-mini .card-text {
   color: white;
+  font-size: 0.9rem;
 }
+
 
 /* Título dentro de la card crema */
 .card--quienes-amplia .section-title {
-  font-size: 2.8rem;   /* súbele o bájale a este valor */
+  font-size: 4rem;   /* súbele o bájale a este valor */
   font-weight: 850;
 }
 
@@ -759,6 +768,8 @@ textarea:focus {
 .card--quienes-amplia .section-text {
   font-size: 1rem;   /* tamaño del texto normal */
   line-height: 1.7;
+  max-width: 600px;
+  
 }
 
 
@@ -771,7 +782,7 @@ textarea:focus {
 #demo-residuos .section-title {
   color: #fffae5;    /* el color que quieras */
   font-size: 4rem; /* ajusta el tamaño: 2rem, 2.4rem, etc. */
-  line-height: 1.1;
+  line-height: 1.2;
 }
 
 /* Solo el título "Pero..¿Por qué escogernos?" */
@@ -784,14 +795,17 @@ textarea:focus {
 
 /* Texto general de BENEFICIOS (fuera de la mini card) */
 #beneficios .section-text {
-  color: #1f2933;     /* color que quieras */
-  font-size: 1.2rem;    /* ajusta tamaño: 0.95rem, 1.1rem, etc. */
+  font-size: 1.1rem;    /* ajusta tamaño: 0.95rem, 1.1rem, etc. */
+  color: #1A1A1A;   /* blanco */
+  font-weight: 400; /* normal */
+  width: 100%;
+  max-width: 600rem;
 
 }
 
 #beneficios .benefits-list li {
   color: black;      /* mismo color u otro */
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 /* Mini card general de BENEFICIOS (Casos de uso típicos) */
@@ -802,23 +816,23 @@ textarea:focus {
 
 /* Solo la mini de “Casos de uso típicos” */
 #beneficios .card--beneficios-casos {
-  margin-left: 8rem;    /* más a la derecha; prueba 2rem, 3rem, etc. */
+  margin-left: 1rem;    /* más a la derecha; prueba 2rem, 3rem, etc. */
   margin-top: 7rem;
   max-width: 330px;     /* más angosta */
   width: 100%;
-  padding: 1.2rem 2.4rem; /* controla alto/ancho interno */
+  padding: 1.2rem 2rem; /* controla alto/ancho interno */
   max-height: 300px;
   overflow: hidden;
 }
 
 #beneficios .two-columns {
-  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1.2fr);
 }
 
 
 /* Solo el texto dentro de la mini “Casos de uso típicos” */
 #beneficios .card--beneficios-casos .card-text {
-  font-size: 1rem;   /* más chico = se ve menos larga */
+  font-size: 0.9rem;   /* más chico = se ve menos larga */
   line-height: 1.4;    /* menos interlineado */
   color: #1A1A1A;
   font-family: "poppins", system-ui, sans-serif;
@@ -827,10 +841,11 @@ textarea:focus {
 
 /* Solo el texto dentro de la mini “Casos de uso típicos” */
 #beneficios .card--beneficios-casos .card-title {
-  font-size: 1.5rem;   /* más chico = se ve menos larga */
+  font-size: 1.3rem;   /* más chico = se ve menos larga */
   line-height: 1.4;    /* menos interlineado */
   color: #1A1A1A;
   font-family: "Cy Groteks Key", system-ui, sans-serif;
+  font-weight: 900;
 }
 
 
