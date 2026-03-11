@@ -1190,3 +1190,95 @@ a.btn-outline:hover,
   scroll-margin-top: 0rem;  /* ajusta según la altura de tu navbar */
   min-height: 100vh;        /* ocupa al menos toda la altura de la pantalla */
 }
+
+/* MOBILE: ajustes generales */
+@media (max-width: 768px) {
+  .section {
+    padding: 3rem 0;
+    min-height: auto;              /* no obligar a pantalla completa en cel */
+    align-items: flex-start;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    white-space: normal;           /* que sí haga salto de línea */
+  }
+
+  .section-text {
+    font-size: 0.95rem;
+  }
+
+  .grid-4,
+  .grid-3 {
+    grid-template-columns: 1fr;    /* tarjetas en columna */
+  }
+
+  .two-columns,
+  .form-container {
+    grid-template-columns: 1fr;    /* columnas → una debajo de otra */
+  }
+}
+
+@media (max-width: 768px) {
+  /* Card crema ocupa todo, menos padding */
+  .card--quienes-amplia {
+    padding: 2rem 1.5rem;
+  }
+
+  /* Card verde deja de ser absolute y se apila abajo */
+  .card--quienes-mini {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1.5rem;
+    min-height: auto;
+  }
+
+  .card--quienes-amplia .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #impacto .section-title,
+  #beneficios .section-title,
+  #demo-residuos .section-title,
+  #testimonios .section-title,
+  #faq .section-title,
+  #contacto .section-title {
+    font-size: 2.1rem;
+    white-space: normal;
+    text-align: left;
+  }
+
+  #demo-residuos .section-text,
+  #impacto .section-text,
+  #beneficios .section-text {
+    max-width: 100%;
+    margin: 0 auto 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #beneficios .two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  #beneficios .card--beneficios-casos {
+    margin-left: 0;
+    margin-top: 1.5rem;
+    max-width: 100%;
+    max-height: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .nav-links {
+    display: none;  /* por eso desaparece el menú en cel */
+  }
+}
+
+
+
+
