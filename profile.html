@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mi cuenta | Eco Connect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos compartidos -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar reutilizada -->
+  <header class="navbar">
+    <div class="container navbar-content">
+      <div class="logo-text">
+        <span class="logo-eco">Eco</span><span class="logo-connect">Connect</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#quienes-somos">CONÓCENOS</a>
+        <a href="index.html#impacto">IMPACTO</a>
+        <a href="index.html#demo-residuos">RESIDUOS</a>
+        <a href="index.html#beneficios">BENEFICIOS</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contacto" class="nav-cta">REGISTRA TU EMPRESA</a>
+      </nav>
+      <div class="navbar-auth">
+        <span id="account-label" class="navbar-account">Mi cuenta</span>
+        <button id="logout-button" class="btn btn-outline">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h1 class="section-title">Perfil de empresa</h1>
+
+      <div class="profile-card card">
+        <div class="profile-header">
+          <div class="profile-logo" id="profile-logo">
+  <span id="profile-logo-fallback">Logo</span>
+</div>
+          <div>
+            <h2 id="profile-company-name">Nombre de la empresa</h2>
+            <p id="profile-company-type">Mi rol en EcoConnect:</p>
+            <p id="profile-member-since">Miembro Eco Connect desde: —</p>
+            <p id="profile-certification">Certificación: No verificado</p>
+          </div>
+        </div>
+
+        <div class="profile-body">
+          <p><strong>Ubicación:</strong> <span id="profile-location">No especificada</span></p>
+          <p><strong>Correo registrado:</strong> <span id="profile-email">—</span></p>
+        </div>
+
+        <button id="edit-profile-button" class="btn btn-primary">Editar perfil</button>
+      </div>
+
+      <!-- Modal para editar ubicación (más adelante logo) -->
+      <div id="edit-profile-modal" class="auth-modal" style="display: none;">
+        <div class="auth-modal-backdrop"></div>
+        <div class="auth-modal-content">
+          <button id="edit-profile-close" class="auth-modal-close">&times;</button>
+          <h3>Editar perfil</h3>
+          <div class="form-group">
+            <label for="edit-location">Ubicación</label>
+            <input type="text" id="edit-location" placeholder="Ej. Torreón, Coah." />
+          </div>
+
+    <div class="form-group">
+      <label for="edit-logo">Logo de la empresa</label>
+      <input type="file" id="edit-logo" accept="image/*" />
+      <p class="auth-helper-text">Formato recomendado: PNG o JPG. Tamaño máximo ~2MB.</p>
+    </div>
+
+     <button id="save-profile-button" class="btn btn-primary full-width">Guardar cambios</button>
+          <p id="edit-profile-status" class="form-status"></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© <span id="year"></span> Eco Connect. Tu aliado en economía circular.</p>
+    </div>
+  </footer>
+
+  <!-- Supabase + script de perfil -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="profile.js"></script>
+</body>
+</html>

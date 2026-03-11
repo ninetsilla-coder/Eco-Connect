@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Publicar servicio de transporte | Eco Connect</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Navbar (misma que index) -->
+  <header class="navbar">
+    <div class="container navbar-content">
+      <div class="logo-text">
+        <span class="logo-eco">Eco</span><span class="logo-connect">Connect</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#quienes-somos">CONÓCENOS</a>
+        <a href="index.html#impacto">IMPACTO</a>
+
+        <div class="nav-item dropdown" id="menu-residuos">
+          <a href="index.html#demo-residuos" class="nav-link">RESIDUOS ▾</a>
+          <div class="dropdown-menu" id="dropdown-residuos">
+            <!-- Proveedor residuos -->
+            <a href="publicar-residuos.html" data-role="proveedor">Publica tus residuos disponibles</a>
+            <a href="mis-residuos.html" data-role="proveedor">Mis residuos publicados</a>
+            <a href="gestion-ambiental.html" data-role="proveedor">Cumple con gestión ambiental</a>
+            <!-- Logística -->
+            <a href="publicar-servicio-transporte.html" data-role="logistica">Publicar servicio de transporte</a>
+            <a href="mis-servicios-transporte.html" data-role="logistica">Ver mis servicios</a>
+            <a href="transporte-responsable.html" data-role="logistica">Cumple con transporte responsable</a>
+          </div>
+        </div>
+
+        <a href="index.html#beneficios">BENEFICIOS</a>
+        <a href="index.html#faq">FAQ</a>
+      </nav>
+
+      <div class="navbar-auth">
+        <button id="login-button" class="btn btn-primary">Login / Registrarse</button>
+        <span id="account-label" class="navbar-account" style="display: none;">Mi cuenta</span>
+        <button id="logout-button" class="btn btn-outline" style="display: none;">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container form-container">
+      <div>
+        <h1 class="section-title">Publicar servicio de transporte</h1>
+        <p class="section-text">
+          Registra un servicio de transporte disponible para mover residuos valorizables dentro de la red EcoConnect.
+        </p>
+      </div>
+
+      <form id="form-servicio-transporte" class="card form-card">
+        <div class="form-group">
+          <label for="tipo-transporte">Tipo de transporte *</label>
+          <input type="text" id="tipo-transporte" required placeholder="Ej. Camión de volteo, camioneta 3.5 t, transporte especializado" />
+        </div>
+
+        <div class="form-group">
+          <label for="capacidad-carga">Capacidad de carga *</label>
+          <input type="text" id="capacidad-carga" required placeholder="Ej. 3 toneladas, 10 toneladas" />
+        </div>
+
+        <div class="form-group">
+          <label for="tipos-residuos">Tipos de residuos que puedes transportar *</label>
+          <input type="text" id="tipos-residuos" required placeholder="Plástico, cartón, metal, residuos industriales, etc." />
+        </div>
+
+        <div class="form-group">
+          <label for="zona-cobertura">Zona de cobertura *</label>
+          <input type="text" id="zona-cobertura" required placeholder="Ciudad, estado o región" />
+        </div>
+
+        <div class="form-group">
+          <label for="disponibilidad">Disponibilidad o frecuencia *</label>
+          <input type="text" id="disponibilidad" required placeholder="Diaria, semanal, bajo solicitud, etc." />
+        </div>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción adicional</label>
+          <textarea id="descripcion" rows="4" placeholder="Condiciones del servicio, requisitos, tipo de carga, restricciones, etc."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="fotos-vehiculo">Fotos del vehículo (opcional)</label>
+          <input type="file" id="fotos-vehiculo" multiple accept="image/*"/>
+          <p class="form-helper-text">Puedes subir una o varias fotos del vehículo para que las empresas lo conozcan mejor.</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary full-width">Publicar servicio</button>
+        <p id="status-servicio-transporte" class="form-status"></p>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer igual que index -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© <span id="year"></span> Eco Connect. Tu aliado en economía circular.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("form-servicio-transporte");
+    const statusEl = document.getElementById("status-servicio-transporte");
+    const inputFotos = document.getElementById("fotos-vehiculo");
+
+    if (!form) return;
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (statusEl) {
+        statusEl.textContent = "Publicando servicio...";
+        statusEl.className = "form-status";
+      }
+
+      // Verificar sesión
+      const { data: sessionData, error: sessionError } = await supabaseClient.auth.getSession();
+      if (sessionError || !sessionData?.session?.user) {
+        if (statusEl) {
+          statusEl.textContent = "Debes iniciar sesión para publicar un servicio.";
+          statusEl.classList.add("error");
+        }
+        return;
+      }
+      const user = sessionData.session.user;
+
+      // Valores del formulario
+      const tipoTransporte = document.getElementById("tipo-transporte")?.value.trim();
+      const capacidadCarga = document.getElementById("capacidad-carga")?.value.trim();
+      const tiposResiduos = document.getElementById("tipos-residuos")?.value.trim();
+      const zonaCobertura = document.getElementById("zona-cobertura")?.value.trim();
+      const disponibilidad = document.getElementById("disponibilidad")?.value.trim();
+      const descripcion = document.getElementById("descripcion")?.value.trim() || null;
+
+      if (!tipoTransporte || !capacidadCarga || !tiposResiduos || !zonaCobertura || !disponibilidad) {
+        if (statusEl) {
+          statusEl.textContent = "Completa todos los campos obligatorios.";
+          statusEl.classList.add("error");
+        }
+        return;
+      }
+
+      try {
+        // 1) Subir fotos (si hay)
+        let fotosUrls = [];
+
+        if (inputFotos && inputFotos.files && inputFotos.files.length > 0) {
+          const files = Array.from(inputFotos.files);
+
+          for (const file of files) {
+            const ext = file.name.split(".").pop();
+            const fileName = `${user.id}/${crypto.randomUUID()}.${ext}`;
+            // subir al bucket fotos-transporte
+            const { data: uploadData, error: uploadError } = await supabaseClient.storage
+              .from("fotos-transporte")
+              .upload(fileName, file, {
+                cacheControl: "3600",
+                upsert: false,
+              });
+
+            if (uploadError) {
+              console.error("Error subiendo foto:", uploadError);
+              continue; // no detenemos todo el flujo por una foto
+            }
+
+            const publicUrl = supabaseClient.storage
+              .from("fotos-transporte")
+              .getPublicUrl(uploadData.path).data.publicUrl;
+
+            fotosUrls.push(publicUrl);
+          }
+        }
+
+        // 2) Insertar servicio en la tabla
+        const { error } = await supabaseClient
+          .from("servicios_transporte")
+          .insert([
+            {
+              user_id: user.id,
+              tipo_transporte: tipoTransporte,
+              capacidad_carga: capacidadCarga,
+              tipos_residuos: tiposResiduos,
+              zona_cobertura: zonaCobertura,
+              disponibilidad: disponibilidad,
+              descripcion: descripcion,
+              estado: "activo",
+              fotos_urls: fotosUrls.length > 0 ? fotosUrls : null,
+            },
+          ]);
+
+        if (error) {
+          console.error("Error insertando servicio de transporte:", error);
+          if (statusEl) {
+            statusEl.textContent = "Ocurrió un error al publicar el servicio. Intenta de nuevo.";
+            statusEl.classList.add("error");
+          }
+          return;
+        }
+
+        form.reset();
+        if (statusEl) {
+          statusEl.textContent = "Servicio publicado correctamente.";
+          statusEl.classList.add("success");
+        }
+      } catch (err) {
+        console.error("Error inesperado:", err);
+        if (statusEl) {
+          statusEl.textContent = "Ocurrió un error inesperado. Intenta más tarde.";
+          statusEl.classList.add("error");
+        }
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>

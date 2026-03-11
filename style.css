@@ -189,6 +189,7 @@ img {
   background-color: #144219;
   transform: translateY(-1px);
   box-shadow: 0 14px 25px rgba(27, 94, 32, 0.4);
+  color: white;
 }
 
 .btn-outline {
@@ -776,6 +777,7 @@ textarea:focus {
 #impacto .section-title {
   font-size: 3.5rem;  /* cambia este valor al tamaño que quieras */
   font-weight: 850;
+  white-space: nowrap;
 }
 
 /* Solo el título "Demo de residuos disponibles" */
@@ -874,7 +876,7 @@ textarea:focus {
 
 #contacto .section-title {
   color: #24352A;  /* el color que quieras para "REGISTRA TU EMPRESA" */
-  font-size: 5rem;  /* hazlo más grande, prueba 2.2–2.8rem */
+  font-size: 3.5rem;  /* hazlo más grande, prueba 2.2–2.8rem */
 
 }
 
@@ -883,5 +885,308 @@ textarea:focus {
  
 }
 
+/* ===========================
+   Modal de autenticación
+   =========================== */
+
+.auth-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none; /* Se mostrará por JS */
+}
+
+.auth-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.auth-modal-content {
+  position: relative;
+  max-width: 420px;
+  width: 90%;
+  margin: 80px auto;
+  background: #ffff;
+  border-radius: 16px;
+  padding: 24px 24px 28px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  z-index: 1;
+}
+
+.auth-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  font-family: "poppins", system-ui, sans-serif;
+ 
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: "Cy Grotesk Key", system-ui, sans-serif;
+  text-transform: uppercase;
+
+}
+
+.auth-tab-active {
+  background: #0a5026;
+  color: white;
+  border-color: #0a5026;
+}
+
+.auth-form h3 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  color: black;
+  font-family: "poppins", system-ui, sans-serif;
+
+}
+
+.auth-helper-text {
+  font-size: 12px;
+  color: #555;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+/* Labels dentro del modal de auth */
+.auth-form label {
+  color: #1e1e1d; /* color de texto de los labels */
+  font-weight: 500; /* opcional, para que se vean un poquito más marcados */
+}
+
+/* Botón Cerrar sesión en el navbar */
+#logout-button {
+  background-color: transparent;    /* sin relleno */
+  color: #0F3D2E;                   /* color del texto */
+  border: 1px solid #0a5026;        /* borde */
+  font-family: "Cy Grotesk Key", system-ui, sans-serif;
+  font-size: 1rem;
+}
+
+/* Hover del botón Cerrar sesión */
+#logout-button:hover {
+  background-color: #0f6a35;        /* relleno al pasar el mouse */
+  color: white;                   /* texto en blanco al hover */
+}
+
+/* Cuando el cursor está encima */
+#login-button:hover {
+  color: #ffffff; /* texto blanco en hover */
+}
+
+/* Texto "Mi cuenta" en el navbar */
+#account-label {
+  font-size: 1rem;            /* tamaño de letra */
+  font-family: "Cy Grotesk Key", sans-serif; /* o "Anton" si lo prefieres */
+  font-weight: 700;           /* 400 = normal, 600 = más grueso */
+  color: #0F3D2E;             /* color del texto */
+  margin-right: 20px;         /* separación respecto al botón Cerrar sesión */
+  position: relative;
+  top: -1px;                  /* súbelo/bájalo: valores negativos = más arriba */
+  padding: 10px 30px;      /* opcional, para que tenga “área clickeable” */
+  border-radius: 999px;  /* opcional, pastilla redonda */
+  cursor: pointer;       /* ESTO hace que se vea como botón siempre */
+  border: 1px solid #0a5026; 
+
+}
 
 
+#account-label:hover {
+  background-color: #ffffff;
+  color: #0a5026;
+  border: #ffffff;
+}
+
+
+.nav-cta {
+  display: none;
+}
+
+.profile-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
+  margin-top: 24px;
+}
+
+.profile-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.profile-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-size: 12px;
+  color: #666;
+}
+
+.profile-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.marketplace-hero {
+  width: 100%;
+  margin-top: 24px;          /* espacio arriba del botón */
+  display: flex;
+  justify-content: center;   /* centrar horizontal */
+  align-items: center;
+  
+}
+
+.nav-item.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  padding: 8px 0;
+  display: none; /* oculto por defecto */
+  z-index: 100;
+}
+
+/* Aquí cambiamos li a directamente a */
+.dropdown-menu a {
+  display: block;
+  padding: 10px 16px;
+  color: #222;
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+/* Quitar borde al último */
+.dropdown-menu a:last-child {
+  border-bottom: none;
+}
+
+/* Mostrar en hover */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.card-actions .btn-estado {
+  display: inline-block;
+  background-color: green;
+  color: #1f2933;
+  font-size: 14px;
+  text-indent: 0;
+}
+
+/* color cuando pasas el mouse */
+.card-actions .btn-estado:hover {
+  background-color: #e5f0ff;   /* azul clarito, ajusta si quieres */
+  color: #1f2933;              /* mantiene el texto oscuro */
+  border-color: #2563eb;       /* opcional: borde azul */
+}
+
+.card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.card-actions .btn-editar {
+  display: inline-block;
+  background-color: green;
+  color: #1f2933;
+  font-size: 14px;
+  text-indent: 0;
+}
+
+.card-actions .btn-editar:hover {
+  background-color: #e5f0ff;
+  color: #1f2933;
+  border-color: #2563eb;
+}
+
+.service-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.badge-success {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.badge-warning {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+#btn-aplicar-filtros.btn.btn-outline {
+  border-color: #16a34a;   /* verde */
+  color: #16a34a;          /* texto verde */
+  background-color: #ffffff;
+}
+
+#btn-aplicar-filtros.btn.btn-outline:hover {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+/* Botón volver a explorar residuos */
+a.btn-outline,
+.btn-outline {
+  border-color: #16a34a;
+  color: #16a34a;
+  background-color: #ffffff;
+}
+
+a.btn-outline:hover,
+.btn-outline:hover {
+  background-color: #16a34a;
+  color: #ffffff;
+}
+
+#demo-residuos {
+  scroll-margin-top: 0rem;  /* ajusta según la altura de tu navbar */
+  min-height: 100vh;        /* ocupa al menos toda la altura de la pantalla */
+}

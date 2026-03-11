@@ -23,11 +23,38 @@
       <nav class="nav-links">
         <a href="#quienes-somos">CONÓCENOS</a>
         <a href="#impacto">IMPACTO</a>
-        <a href="#demo-residuos">RESIDUOS</a>
+
+  <!-- RESIDUOS con link + dropdown en un solo bloque -->
+ <div class="nav-item dropdown" id="menu-residuos">
+  <a href="index.html#demo-residuos" class="nav-link">RESIDUOS ▾</a>
+  <div class="dropdown-menu" id="dropdown-residuos">
+    <!-- Opciones para proveedor de residuos -->
+    <a href="publicar-residuos.html" data-role="proveedor">Publica tus residuos disponibles</a>
+    <a href="mis-residuos.html" data-role="proveedor">Mis residuos publicados</a>
+    <a href="gestion-ambiental.html" data-role="proveedor">Cumple con gestión ambiental</a>
+
+    <!-- Opciones para logística -->
+    <a href="publicar-servicio-transporte.html" data-role="logistica">Publicar servicio de transporte</a>
+    <a href="mis-servicios-transporte.html" data-role="logistica">Ver mis servicios</a>
+    <a href="transporte-responsable.html" data-role="logistica">Cumple con transporte responsable</a>
+ 
+    <!-- Opciones para comprador -->
+    <a href="comprador-explorar-residuos.html" data-role="comprador">Explorar residuos</a>
+    <a href="comprador-mis-intereses.html" data-role="comprador">Mis intereses</a>
+    <a href="comprador-servicios-transporte.html" data-role="comprador">Servicios de transporte</a>
+
+   </div>
+</div>
+
         <a href="#beneficios">BENEFICIOS</a>
         <a href="#faq">FAQ</a>
-        <a href="#contacto" class="nav-cta">REGISTRA TU EMPRESA</a>
-      </nav>
+        </nav>
+
+      <div class="navbar-auth">
+        <button id="login-button" class="btn btn-primary">Login / Registrarse</button>
+        <span id="account-label" class="navbar-account" style="display: none;">Mi cuenta</span>
+        <button id="logout-button" class="btn btn-outline" style="display: none;">Cerrar sesión</button>
+      </div>
     </div>
   </header>
 
@@ -43,7 +70,7 @@
         Eco Connect es una plataforma B2B de abastecimiento industrial alternativo que conecta a empresas compradoras con proveedores de residuos valorizables, haciendo más fácil integrar economía circular en tus compras sin complicar la&nbsp;operación&nbsp;diaria.
       </p>
       <div class="hero-actions">
-        <a href="#contacto" class="btn btn-primary">Registra tu empresa</a>
+        <a href="#contacto" class="btn btn-primary">Contacto / Dudas</a>
         <a href="#demo-residuos" class="btn btn-outline">Ver ejemplo de residuos</a>
       </div>
     </div>
@@ -77,65 +104,117 @@
   </section>
 
   <!-- Indicadores de impacto -->
-  <section id="impacto" class="section section-alt">
-    <div class="container">
-      <h2 class="section-title center">INDICADORES DE IMPACTO</h2>
-      <p class="section-text center">
-        Escenarios de impacto potencial al consolidar Eco Connect como plataforma de referencia para el intercambio de residuos valorizables en Torreón y otras regiones industriales. 
-      </p>
-      <div class="grid grid-4">
-        <div class="metric-card">
-          <p class="metric-value">+120</p>
-          <p class="metric-label">Empresas conectadas</p>
-        </div>
-        <div class="metric-card">
-          <p class="metric-value">8,500 t</p>
-          <p class="metric-label">Residuos valorizados</p>
-        </div>
-        <div class="metric-card">
-          <p class="metric-value">-3,200 t</p>
-          <p class="metric-label">CO₂e potenciales evitadas</p>
-        </div>
-        <div class="metric-card">
-          <p class="metric-value">+18</p>
-          <p class="metric-label">Industrias atendidas</p>
-        </div>
-      </div>
-    </div>
-  </section>
+<section id="impacto" class="section section-alt">
+  <div class="container">
+    <h2 class="section-title center">IMPACTO GENERADO</h2>
+    <p class="section-text center">
+      Estos indicadores representan escenarios de impacto proyectados al consolidar Eco Connect como plataforma regional de intercambio de residuos valorizables.
+    </p>
 
-  <!-- Demo de residuos -->
-  <section id="demo-residuos" class="section">
-    <div class="container">
-      <h2 class="section-title center">DEMO DE RESIDUOS DISPONIBLES</h2>
-      <p class="section-text center">
-        Así podría verse el catálogo de residuos valorizables disponibles para tu empresa dentro de Eco Connect. 
-      </p>
-      <div class="grid grid-3">
-        <div class="waste-card">
-          <h3 class="waste-type">Plástico PET postindustrial</h3>
-          <p><strong>Cantidad:</strong> 500 kg / mes</p>
-          <p><strong>Ubicación:</strong> Monterrey, N.L.</p>
-          <p><strong>Frecuencia:</strong> Mensual</p>
-          <p><strong>Estado:</strong> Disponible</p>
-        </div>
-        <div class="waste-card">
-          <h3 class="waste-type">Cartón corrugado limpio</h3>
-          <p><strong>Cantidad:</strong> 2 t / semana</p>
-          <p><strong>Ubicación:</strong> Torreón, Coah.</p>
-          <p><strong>Frecuencia:</strong> Semanal</p>
-          <p><strong>Estado:</strong> Bajo negociación</p>
-        </div>
-        <div class="waste-card">
-          <h3 class="waste-type">Lodos con contenido orgánico</h3>
-          <p><strong>Cantidad:</strong> 1,5 t / mes</p>
-          <p><strong>Ubicación:</strong> Querétaro, Qro.</p>
-          <p><strong>Frecuencia:</strong> Mensual</p>
-          <p><strong>Estado:</strong> Disponible</p>
-        </div>
+    <div class="grid grid-4">
+      <div class="metric-card">
+        <p class="metric-value" data-target="120">0</p>
+        <p class="metric-label">Empresas conectadas</p>
+      </div>
+
+      <div class="metric-card">
+        <p class="metric-value" data-target="8500">0</p>
+        <p class="metric-label">Residuos valorizados</p>
+      </div>
+
+      <div class="metric-card">
+        <p class="metric-value" data-target="-3200">0</p>
+        <p class="metric-label">CO₂e potenciales evitadas</p>
+      </div>
+
+      <div class="metric-card">
+        <p class="metric-value" data-target="250">0</p>
+        <p class="metric-label">Intercambio de residuos facilitados</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Demo de residuos -->
+<section id="demo-residuos" class="section">
+  <div class="container">
+    <h2 class="section-title center">RESIDUOS Y SERVICIOS EN ECOCONNECT</h2>
+    <p class="section-text center">
+      Explora cómo funciona EcoConnect según el tipo de empresa. Al crear una cuenta verás opciones personalizadas para tu rol.
+    </p>
+
+    <!-- BLOQUE GENÉRICO (sin sesión o sin rol detectado) -->
+    <div id="path-generico" class="grid grid-3">
+      <div class="waste-card">
+        <h3 class="waste-type">Publicar residuos valorizables</h3>
+        <p>Las empresas proveedoras pueden listar materiales como plástico, cartón o subproductos industriales con fotos, cantidades y condiciones.</p>
+      </div>
+      <div class="waste-card">
+        <h3 class="waste-type">Explorar residuos disponibles</h3>
+        <p>Las empresas compradoras consultan oferta por ubicación, nivel de procesamiento y frecuencia para integrarlos a su cadena de suministro.</p>
+      </div>
+      <div class="waste-card">
+        <h3 class="waste-type">Coordinar logística especializada</h3>
+        <p>Aliados de transporte ayudan a mover residuos valorizables con requisitos específicos de manejo y documentación.</p>
+      </div>
+    </div>
+
+    <!-- BLOQUE COMPRADOR -->
+    <div id="path-comprador" class="grid grid-3" style="display: none;">
+      <div class="waste-card">
+        <h3 class="waste-type">Buscar residuos por categoría</h3>
+        <p>Filtra materiales por tipo, ubicación y volumen para encontrar opciones que sustituyan insumos tradicionales.</p>
+      </div>
+      <div class="waste-card">
+        <h3 class="waste-type">Solicitar propuestas a proveedores</h3>
+        <p>Conecta con proveedores de residuos valorizables y negocia condiciones de suministro dentro del ecosistema.</p>
+      </div>
+      <div class="waste-card">
+        <h3 class="waste-type">Trazabilidad para tus reportes ESG</h3>
+        <p>Integra información de origen, cantidades y destino de los residuos que compras a tus indicadores de economía circular.</p>
+      </div>
+    </div>
+
+    <!-- BLOQUE PROVEEDOR DE RESIDUOS -->
+    <div id="path-proveedor" class="grid grid-3" style="display: none;">
+      <div class="waste-card">
+        <h3 class="waste-type">Publicar residuos disponibles</h3>
+        <p>Da de alta los residuos valorizables de tu planta con cantidad, frecuencia, ubicación y nivel de procesamiento.</p>
+      </div>
+      <div class="waste-card">
+        <h3 class="waste-type">Gestionar tus publicaciones</h3>
+        <p>Consulta, actualiza o marca como vendidos tus residuos desde un solo panel de control.</p>
+      </div>
+      <div class="waste-card">
+        <h3 class="waste-type">Cumplir con gestión ambiental</h3>
+        <p>Adjunta documentación, condiciones y prácticas de manejo responsable para reforzar la confianza en tus residuos.</p>
+      </div>
+    </div>
+
+    <!-- BLOQUE PROVEEDOR DE LOGÍSTICA -->
+    <div id="path-logistica" class="grid grid-3" style="display: none;">
+      <div class="waste-card">
+        <h3 class="waste-type">Publicar servicio de transporte</h3>
+        <p>Comparte qué tipo de vehículos tienes, su capacidad y qué tipos de residuos puedes transportar para empresas de la red.</p>
+      </div>
+      <div class="waste-card">
+        <h3 class="waste-type">Ver mis servicios</h3>
+        <p>Administra los servicios que has publicado, ajusta disponibilidad y actualiza zonas de cobertura.</p>
+      </div>
+      <div class="waste-card">
+        <h3 class="waste-type">Cumplir con transporte responsable</h3>
+        <p>Sube permisos, seguros y prácticas de manejo seguro para demostrar cumplimiento ambiental y operativo.</p>
+      </div>
+    </div>
+
+    <!-- Botón de marketplace (fuera de las grids) -->
+    <div id="marketplace-hero" class="marketplace-hero" style="display: none;">
+      <button id="marketplace-button" class="btn btn-primary">
+        Explorar marketplace
+      </button>
+    </div>
+  </div>
+</section>
 
   <!-- Beneficios -->
   <section id="beneficios" class="section">
@@ -143,18 +222,18 @@
       
       <div>
 
-        <h2 class="section-title">PERO..¿POR QUÉ ESCOGERNOS?</h2>
+        <h2 class="section-title">CERTIFICACIÓN ECO CONNECT</h2>
 
         <p class="section-text">
-          Eco Connect reduce la complejidad de abastecerte con residuos valorizables: en un solo lugar comparas ofertas, revisas documentación ambiental clave y coordinas el traslado con aliados especializados. 
+          Un sistema de verificación que respalda la trazabilidad y el uso responsable de residuos valorizables dentro de la red Eco Connect.
         </p>
 
         <ul class="benefits-list">
-          <li>Acceso a proveedores de residuos valorizables industriales con información clara sobre precio, ubicación, volumen y nivel de procesamiento.</li>
-          <li>Sistema integrado de gestión documental ambiental para auditorías, licencias y reportes de cumplimiento.</li>
-          <li>Red de aliados logísticos especializados para el traslado y manejo adecuado de los residuos. </li>
-          <li>Modelo basado en comisión por cada transacción exitosa.</li>
-          <li>Certificación Eco Connect que respalda la trazabilidad ESG y el uso de residuos valorizables en las operaciones. </li>
+          <li>Trazabilidad del origen y destino de los residuos.</li>
+          <li>• Mayor transparencia en las transacciones dentro del ecosistema.</li>
+          <li>• Apoyo al cumplimiento de objetivos de sostenibilidad (ESG). </li>
+          <li>• Mayor confianza entre empresas, recicladoras y socios logísticos.</li>
+          <li>• Medición del impacto ambiental generado por la valorización de residuos. </li>
         </ul>
       </div>
 
@@ -162,7 +241,7 @@
       <div class="card card--beneficios-casos">
         <h3 class="card-title">Casos de uso típicos</h3>
         <p class="card-text">
-          Empresas manufactureras, agroindustriales, de alimentos y bebidas, logística y reciclaje que buscan usar residuos valorizables sin complicar sus procesos.
+          Empresas que buscan validar el manejo responsable de residuos y fortalecer sus prácticas de economía circular mediante la certificación EcoConnect.
         </p>
       </div>
 
@@ -233,9 +312,9 @@
   <section id="contacto" class="section">
     <div class="container form-container">
       <div>
-        <h2 class="section-title">REGISTRA TU EMPRESA</h2>
+        <h2 class="section-title">¿TU EMPRESA QUIERE INTEGRARSE A ECO CONNECT?</h2>
         <p class="section-text">
-          Comparte tus datos y nos pondremos en contacto contigo para explorar cómo Eco Connect puede ayudar a tu organización a valorizar sus residuos o encontrar nuevas fuentes de materia prima.
+          Si tienes preguntas sobre cómo funciona la plataforma o cómo participar en la red, nuestro equipo puede ayudarte.
         </p>
       </div>
       <form id="empresa-form" class="card form-card">
@@ -248,14 +327,80 @@
           <input type="email" id="correo" name="correo" required placeholder="nombre@empresa.com" />
         </div>
         <div class="form-group">
-          <label for="mensaje">Mensaje (opcional)</label>
-          <textarea id="mensaje" name="mensaje" rows="4" placeholder="Cuéntanos brevemente qué tipo de residuos generas o buscas."></textarea>
+          <label for="mensaje">Mensaje o duda</label>
+          <textarea id="mensaje" name="mensaje" rows="4" placeholder="El equipo de Eco Connect responderá en un plazo de 24–48 horas."></textarea>
         </div>
         <button type="submit" class="btn btn-primary full-width">Enviar</button>
         <p id="form-status" class="form-status"></p>
       </form>
     </div>
   </section>
+
+  <!-- Modal de autenticación -->
+  <div id="auth-modal" class="auth-modal" style="display: none;">
+    <div class="auth-modal-backdrop"></div>
+    <div class="auth-modal-content">
+      <button id="auth-modal-close" class="auth-modal-close">&times;</button>
+
+      <div class="auth-tabs">
+        <button id="tab-signup" class="auth-tab auth-tab-active">Crear cuenta</button>
+        <button id="tab-login" class="auth-tab">Iniciar sesión</button>
+      </div>
+
+      <!-- Formulario de registro -->
+<form id="signup-form" class="auth-form">
+  <h3>Crear cuenta</h3>
+
+  <div class="form-group">
+    <label for="signup-company">Nombre de la empresa *</label>
+    <input type="text" id="signup-company" required placeholder="Ej. Eco Industrias del Norte" />
+  </div>
+
+  <div class="form-group">
+    <label for="signup-email">Correo empresarial *</label>
+    <input type="email" id="signup-email" required placeholder="nombre@empresa.com" />
+  </div>
+
+  <div class="form-group">
+    <label for="signup-company-type">Tipo de empresa *</label>
+    <select id="signup-company-type" required>
+      <option value="">Selecciona una opción</option>
+      <option value="comprador">Comprador industrial</option>
+      <option value="proveedor">Proveedor de residuos</option>
+      <option value="logistica">Proveedor de transporte y logística</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="signup-password">Contraseña *</label>
+    <input type="password" id="signup-password" required placeholder="Mínimo 6 caracteres" />
+  </div>
+
+  <p class="auth-helper-text">
+    Usaremos este acceso para tu cuenta de Eco Connect. Puedes cambiar tu información más adelante.
+  </p>
+  <button type="submit" class="btn btn-primary full-width">Crear cuenta</button>
+  <p id="signup-status" class="form-status"></p>
+</form>
+
+
+      <!-- Formulario de login -->
+      <form id="login-form" class="auth-form" style="display: none;">
+        <h3>Iniciar sesión</h3>
+        <div class="form-group">
+          <label for="login-email">Correo electrónico *</label>
+          <input type="email" id="login-email" required placeholder="nombre@empresa.com" />
+        </div>
+        <div class="form-group">
+          <label for="login-password">Contraseña *</label>
+          <input type="password" id="login-password" required />
+        </div>
+        <button type="submit" class="btn btn-primary full-width">Entrar</button>
+        <p id="login-status" class="form-status"></p>
+      </form>
+    </div>
+  </div>
+
 
   <!-- Footer -->
   <footer class="footer">
@@ -264,7 +409,63 @@
     </div>
   </footer>
 
-  <!-- Script -->
+   <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll('#impacto .metric-value');
+    let hasRun = false;
+
+    const animateCounter = (el) => {
+      const target = Number(el.getAttribute('data-target'));
+      const duration = 1500;
+      const start = 0;
+      const startTime = performance.now();
+
+      const tick = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(start + (target - start) * progress);
+        el.textContent = value.toLocaleString('es-MX');
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+
+      requestAnimationFrame(tick);
+    };
+
+    const startCounters = () => {
+      if (!hasRun) {
+        counters.forEach(animateCounter);
+        hasRun = true;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            startCounters();
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    const impactoSection = document.querySelector('#impacto');
+    if (impactoSection) observer.observe(impactoSection);
+
+    // 🔹 También al hacer click en el link de nav a #impacto
+    const impactoLink = document.querySelector('a[href="#impacto"]');
+    if (impactoLink) {
+      impactoLink.addEventListener('click', () => {
+        // retraso pequeño para dejar que el scroll ancle la sección
+        setTimeout(startCounters, 400);
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
+

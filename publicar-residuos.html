@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eco Connect | Publica tus residuos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fuentes: Anton (títulos) y Poppins (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Estilos específicos de esta página -->
+  <style>
+    .page-hero {
+      max-width: 960px;
+      margin: 40px auto 24px;
+      padding: 0 16px;
+    }
+
+    .page-hero h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .page-hero p {
+      color: #4b5563;
+      max-width: 640px;
+      font-size: 0.98rem;
+    }
+
+    .cards-container {
+      max-width: 960px;
+      margin: 24px auto 24px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .residuo-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .residuo-card h2 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+    }
+
+    .residuo-card p {
+      font-size: 0.95rem;
+      color: #4b5563;
+      margin-bottom: 16px;
+    }
+
+    .residuo-card button {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    .residuo-card button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(22, 163, 74, 0.35);
+    }
+
+    .form-section {
+      max-width: 960px;
+      margin: 8px auto 40px;
+      padding: 0 16px 24px;
+      display: none; /* oculto por defecto */
+    }
+
+    .form-section-inner {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 20px 24px 28px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .form-section h3 {
+      margin-bottom: 4px;
+      font-size: 1.1rem;
+    }
+
+    .form-section p.form-subtitle {
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px 20px;
+    }
+
+    .form-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #374151;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .form-field textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 12px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      font-size: 0.88rem;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      padding: 9px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    @media (max-width: 640px) {
+      .page-hero {
+        margin-top: 24px;
+      }
+      .page-hero h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar (misma que en index.html) -->
+  <header class="navbar">
+    <div class="container navbar-content">
+      <div class="logo-text">
+        <span class="logo-eco">Eco</span><span class="logo-connect">Connect</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#quienes-somos">CONÓCENOS</a>
+        <a href="index.html#impacto">IMPACTO</a>
+
+          <div class="nav-item dropdown" id="menu-residuos">
+  <a href="index.html#demo-residuos" class="nav-link">RESIDUOS ▾</a>
+  <div class="dropdown-menu" id="dropdown-residuos">
+    <!-- Opciones para proveedor de residuos -->
+    <a href="publicar-residuos.html" data-role="proveedor">Publica tus residuos disponibles</a>
+    <a href="mis-residuos.html" data-role="proveedor">Mis residuos publicados</a>
+    <a href="gestion-ambiental.html" data-role="proveedor">Cumple con gestión ambiental</a>
+
+    <!-- Opciones para logística -->
+    <a href="publicar-servicio-transporte.html" data-role="logistica">Publicar servicio de transporte</a>
+    <a href="mis-servicios-transporte.html" data-role="logistica">Ver mis servicios</a>
+    <a href="transporte-responsable.html" data-role="logistica">Cumple con transporte responsable</a>
+  </div>
+</div>
+
+
+        <a href="index.html#beneficios">BENEFICIOS</a>
+        <a href="index.html#faq">FAQ</a>
+      </nav>
+
+      <div class="navbar-auth">
+        <button id="login-button" class="btn btn-primary">Login / Registrarse</button>
+        <span id="account-label" class="navbar-account" style="display: none;">Mi cuenta</span>
+        <button id="logout-button" class="btn btn-outline" style="display: none;">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero de esta página -->
+    <section class="page-hero">
+      <h1>Publica tus residuos disponibles</h1>
+      <p>
+        Elige si tu residuo está sin procesar o ya limpio y procesado, comparte la información clave y conecta con recicladores certificados que puedan reutilizarlo.
+      </p>
+    </section>
+
+    <!-- Cards de tipos de residuo -->
+    <section class="cards-container">
+      <article class="residuo-card">
+        <h2>Residuo sin procesar</h2>
+        <p>
+          Residuos tal cual salen de tu línea de producción (sin limpieza, selección ni compactado previo).
+        </p>
+        <button type="button" onclick="abrirFormulario('sin-procesar')">
+          Publicar residuo sin procesar
+        </button>
+      </article>
+
+      <article class="residuo-card">
+        <h2>Residuo procesado y limpio</h2>
+        <p>
+          Material que ya pasó por procesos de limpieza, selección o compactado y está listo para reutilizarse.
+        </p>
+        <button type="button" onclick="abrirFormulario('procesado')">
+          Publicar residuo procesado y limpio
+        </button>
+      </article>
+    </section>
+
+    <!-- Formulario dinámico -->
+    <section id="form-residuo" class="form-section">
+      <div class="form-section-inner">
+        <h3 id="form-title">Publicar residuo</h3>
+        <p id="form-subtitle" class="form-subtitle">
+          Completa los datos del residuo para que los recicladores puedan evaluar la oportunidad.
+        </p>
+
+        <form id="form-publicar-residuo">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="tipo">Tipo de residuo</label>
+              <input
+                type="text"
+                id="tipo"
+                name="tipo"
+                placeholder="Ej. PET transparente, cartón corrugado, aluminio"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="cantidad">Cantidad disponible</label>
+              <input
+                type="text"
+                id="cantidad"
+                name="cantidad"
+                placeholder="Ej. 500 kg por mes, 3 toneladas por lote"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="ubicacion">Ubicación</label>
+              <input
+                type="text"
+                id="ubicacion"
+                name="ubicacion"
+                placeholder="Ciudad, estado, planta o almacén"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="frecuencia">Frecuencia</label>
+              <select id="frecuencia" name="frecuencia">
+                <option value="">Selecciona una opción</option>
+                <option value="unica">Única vez</option>
+                <option value="semanal">Semanal</option>
+                <option value="mensual">Mensual</option>
+                <option value="constante">Flujo constante</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="estado-residuo">Estado del residuo</label>
+              <select id="estado-residuo" name="estado-residuo">
+                <option value="">Selecciona una opción</option>
+                <option value="seco">Seco</option>
+                <option value="humedo">Húmedo</option>
+                <option value="mezclado">Mezclado</option>
+                <option value="limpio">Limpio</option>
+                <option value="con-impurezas">Con impurezas</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="descripcion">Descripción adicional</label>
+              <textarea
+                id="descripcion"
+                name="descripcion"
+                placeholder="Detalle composición, contaminantes, restricciones de manejo, etc."
+              ></textarea>
+            </div>
+
+            <div class="form-field">
+              <label for="fotos">Fotos del residuo</label>
+              <input
+                type="file"
+                id="fotos"
+                name="fotos"
+                multiple
+              />
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" onclick="cerrarFormulario()">
+              Cancelar
+            </button>
+            <button type="submit" class="btn-primary">
+              Publicar residuo
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+    <!-- Scripts globales -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+
+  <!-- Script específico de esta página -->
+  <script>
+    let categoriaSeleccionada = null;
+
+    function abrirFormulario(tipo) {
+      const formSection = document.getElementById("form-residuo");
+      const formTitle = document.getElementById("form-title");
+      const formSubtitle = document.getElementById("form-subtitle");
+
+      categoriaSeleccionada = tipo === "sin-procesar" ? "sin_procesar" : "procesado";
+
+      if (tipo === "sin-procesar") {
+        formTitle.textContent = "Publicar residuo sin procesar";
+        formSubtitle.textContent =
+          "Describe el residuo tal como sale de tu proceso (antes de limpieza, selección o compactado).";
+      } else if (tipo === "procesado") {
+        formTitle.textContent = "Publicar residuo procesado y limpio";
+        formSubtitle.textContent =
+          "Describe el material ya procesado para que los recicladores entiendan en qué estado lo recibirán.";
+      } else {
+        formTitle.textContent = "Publicar residuo";
+        formSubtitle.textContent =
+          "Completa los datos del residuo para que los recicladores puedan evaluar la oportunidad.";
+      }
+
+      formSection.style.display = "block";
+      formSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function cerrarFormulario() {
+      const formSection = document.getElementById("form-residuo");
+      formSection.style.display = "none";
+    }
+
+    // Manejo de submit: guardar en Supabase
+    document.addEventListener("DOMContentLoaded", () => {
+      const formPublicar = document.getElementById("form-publicar-residuo");
+      if (!formPublicar) return;
+
+      const formStatus = document.createElement("p");
+      formStatus.className = "form-status";
+      formStatus.style.marginTop = "8px";
+      formPublicar.parentElement.appendChild(formStatus);
+
+      formPublicar.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  formStatus.textContent = "Guardando residuo...";
+  formStatus.className = "form-status";
+
+  const tipo = document.getElementById("tipo").value.trim();
+  const cantidad = document.getElementById("cantidad").value.trim();
+  const ubicacion = document.getElementById("ubicacion").value.trim();
+  const frecuencia = document.getElementById("frecuencia").value;
+  const estadoResiduo = document.getElementById("estado-residuo").value;
+  const descripcion = document.getElementById("descripcion").value.trim();
+  const files = document.getElementById("fotos").files;
+
+  try {
+    // 1) Usuario actual
+    const { data: userData, error: userError } =
+      await supabaseClient.auth.getUser();
+    if (userError || !userData.user) {
+      formStatus.textContent =
+        "Debes iniciar sesión para publicar un residuo.";
+      formStatus.classList.add("error");
+      return;
+    }
+
+    const user = userData.user;
+
+    // 2) Perfil para company_id
+    const { data: profile, error: profileError } = await supabaseClient
+      .from("profiles")
+      .select("id")
+      .eq("id", user.id)
+      .single();
+
+    if (profileError) {
+      console.error("Error obteniendo perfil:", profileError);
+      formStatus.textContent = "No se pudo obtener tu perfil de empresa.";
+      formStatus.classList.add("error");
+      return;
+    }
+
+    // 3) Subir fotos a Storage (si hay)
+    const fotosPaths = [];
+
+    if (files && files.length > 0) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        // Ruta única: userId/uuid-nombre-original
+        const uniqueName = `${user.id}/${Date.now()}-${i}-${file.name}`;
+
+        const { data: uploadData, error: uploadError } =
+          await supabaseClient.storage
+            .from("residuos-fotos") // nombre del bucket
+            .upload(uniqueName, file);
+
+        if (uploadError) {
+          console.error("Error subiendo archivo:", uploadError);
+          formStatus.textContent =
+            "Ocurrió un error al subir las fotos. Intenta de nuevo.";
+          formStatus.classList.add("error");
+          return;
+        }
+
+        // URL pública de la imagen
+        const {
+          data: { publicUrl },
+        } = supabaseClient.storage
+          .from("residuos-fotos")
+          .getPublicUrl(uploadData.path);
+
+        fotosPaths.push(publicUrl);
+      }
+    }
+
+    // 4) Insertar en residuos_publicados con URLs de fotos
+    const { data: insertData, error: insertError } = await supabaseClient
+      .from("residuos_publicados")
+      .insert({
+        user_id: user.id,
+        company_id: profile.id,
+        tipo: tipo || null,
+        categoria: categoriaSeleccionada, // sin_procesar o procesado
+        cantidad: cantidad || null,
+        ubicacion: ubicacion || null,
+        frecuencia: frecuencia || null,
+        estado_residuo: estadoResiduo || null,
+        descripcion: descripcion || null,
+        fotos: fotosPaths.length > 0 ? fotosPaths : null, // JSON array de URLs
+      })
+      .select()
+      .single();
+
+    if (insertError) {
+      console.error("Error insertando residuo:", insertError);
+      formStatus.textContent =
+        "Ocurrió un error al guardar el residuo. Intenta de nuevo.";
+      formStatus.classList.add("error");
+      return;
+    }
+
+    console.log("Residuo guardado:", insertData);
+    formStatus.textContent = "Residuo publicado correctamente.";
+    formStatus.classList.add("success");
+    formPublicar.reset();
+  } catch (err) {
+    console.error(err);
+    formStatus.textContent =
+      "Ocurrió un error inesperado. Intenta más tarde.";
+    formStatus.classList.add("error");
+  }
+});
+
+    });
+  </script>
+
+</body>
+</html>
+

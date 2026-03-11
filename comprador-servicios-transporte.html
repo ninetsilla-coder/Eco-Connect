@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eco Connect | Servicios de transporte</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Estilos específicos -->
+  <style>
+    .page-hero {
+      max-width: 960px;
+      margin: 40px auto 24px;
+      padding: 0 16px;
+    }
+    .page-hero h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .page-hero p {
+      color: #4b5563;
+      max-width: 640px;
+      font-size: 0.98rem;
+    }
+
+    .filters {
+      max-width: 960px;
+      margin: 0 auto 16px;
+      padding: 0 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    .filters .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1 1 200px;
+      min-width: 200px;
+    }
+    .filters label {
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+    .filters input {
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      font-size: 0.9rem;
+    }
+
+    .list-status {
+      max-width: 960px;
+      margin: 8px auto 0;
+      padding: 0 16px;
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .servicios-list {
+      max-width: 1100px;
+      margin: 16px auto 40px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .servicio-item {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px 16px 18px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .servicio-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .servicio-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .servicio-badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .servicio-meta {
+      font-size: 0.85rem;
+      color: #6b7280;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    .servicio-descripcion {
+      font-size: 0.85rem;
+      color: #4b5563;
+    }
+
+    .servicio-fotos {
+      display: flex;
+      gap: 6px;
+      margin-top: 6px;
+      flex-wrap: wrap;
+    }
+
+    .servicio-fotos img {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .servicio-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-secondary {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #f9fafb;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .empty-state {
+      max-width: 640px;
+      margin: 40px auto;
+      padding: 20px 24px;
+      border-radius: 16px;
+      background: #f9fafb;
+      border: 1px dashed #d1d5db;
+      text-align: center;
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+    .badge-doc-transporte {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      background: #f3f4f6;
+      color: #4b5563;
+    }
+    .badge-doc-transporte.ok {
+      background: #dcfce7;
+      color: #166534;
+    }
+    .badge-doc-transporte.parcial {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+    .badge-doc-transporte.sin {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Navbar reutilizada -->
+  <header class="navbar">
+    <div class="container navbar-content">
+      <div class="logo-text">
+        <span class="logo-eco">Eco</span><span class="logo-connect">Connect</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#quienes-somos">CONÓCENOS</a>
+        <a href="index.html#impacto">IMPACTO</a>
+
+        <div class="nav-item dropdown" id="menu-residuos">
+          <a href="index.html#demo-residuos" class="nav-link">RESIDUOS ▾</a>
+          <div class="dropdown-menu" id="dropdown-residuos">
+            <!-- Proveedor -->
+            <a href="publicar-residuos.html" data-role="proveedor">Publica tus residuos disponibles</a>
+            <a href="mis-residuos.html" data-role="proveedor">Mis residuos publicados</a>
+            <a href="gestion-ambiental.html" data-role="proveedor">Cumple con gestión ambiental</a>
+
+            <!-- Logística -->
+            <a href="publicar-servicio-transporte.html" data-role="logistica">Publicar servicio de transporte</a>
+            <a href="mis-servicios-transporte.html" data-role="logistica">Ver mis servicios</a>
+            <a href="transporte-responsable.html" data-role="logistica">Cumple con transporte responsable</a>
+
+            <!-- Comprador -->
+            <a href="comprador-explorar-residuos.html" data-role="comprador">Explorar residuos</a>
+            <a href="comprador-mis-intereses.html" data-role="comprador">Mis intereses</a>
+            <a href="comprador-servicios-transporte.html" data-role="comprador">Servicios de transporte</a>
+          </div>
+        </div>
+
+        <a href="index.html#beneficios">BENEFICIOS</a>
+        <a href="index.html#faq">FAQ</a>
+      </nav>
+
+      <div class="navbar-auth">
+        <button id="login-button" class="btn btn-primary">Login / Registrarse</button>
+        <span id="account-label" class="navbar-account" style="display: none;">Mi cuenta</span>
+        <button id="logout-button" class="btn btn-outline" style="display: none;">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <h1>Servicios de transporte disponibles</h1>
+      <p>
+        Encuentra proveedores logísticos que puedan transportar tus residuos. Filtra por tipo de transporte y zona de cobertura.
+      </p>
+    </section>
+
+    <section class="filters">
+      <div class="form-group">
+        <label for="filtro-tipo-transporte">Tipo de transporte</label>
+        <input type="text" id="filtro-tipo-transporte" placeholder="Ej. camión, pipa" />
+      </div>
+      <div class="form-group">
+        <label for="filtro-zona">Zona de cobertura</label>
+        <input type="text" id="filtro-zona" placeholder="Ciudad, estado o región" />
+      </div>
+      <button id="btn-aplicar-filtros" class="btn btn-outline">Aplicar filtros</button>
+    </section>
+
+    <p id="servicios-status" class="list-status"></p>
+
+    <section id="servicios-list" class="servicios-list">
+      <!-- Cards vía JS -->
+    </section>
+
+    <div id="servicios-empty" class="empty-state" style="display: none;">
+      No encontramos servicios de transporte con esos filtros.
+      <br />
+      Intenta cambiar el tipo de transporte o la zona de cobertura.
+    </div>
+  </main>
+
+  <!-- Scripts globales -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+
+  <!-- Script específico -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const lista = document.getElementById("servicios-list");
+      const statusEl = document.getElementById("servicios-status");
+      const emptyState = document.getElementById("servicios-empty");
+      const filtroTipo = document.getElementById("filtro-tipo-transporte");
+      const filtroZona = document.getElementById("filtro-zona");
+      const btnFiltros = document.getElementById("btn-aplicar-filtros");
+
+      async function cargarServicios() {
+        if (statusEl) {
+          statusEl.textContent = "Cargando servicios de transporte disponibles...";
+        }
+        emptyState.style.display = "none";
+
+        let query = supabaseClient
+          .from("servicios_transporte")
+          .select("*")
+          .eq("estado", "activo")
+          .order("created_at", { ascending: false });  // [web:585][web:674]
+
+        const tipoValor = filtroTipo.value.trim();
+        const zonaValor = filtroZona.value.trim();
+
+        if (tipoValor) {
+          query = query.ilike("tipo_transporte", "%" + tipoValor + "%");
+        }
+        if (zonaValor) {
+          query = query.ilike("zona_cobertura", "%" + zonaValor + "%");
+        }
+
+        const { data: servicios, error } = await query;
+        console.log("Servicios devueltos por Supabase:", servicios);
+
+
+        if (error) {
+          console.error("Error cargando servicios de transporte:", error);  // [web:585]
+          if (statusEl) {
+            statusEl.textContent = "Ocurrió un error al cargar los servicios de transporte.";
+          }
+          return;
+        }
+
+        if (!servicios || servicios.length === 0) {
+          lista.innerHTML = "";
+          emptyState.style.display = "block";
+          if (statusEl) statusEl.textContent = "";
+          return;
+        }
+
+        if (statusEl) {
+          statusEl.textContent = `Mostrando ${servicios.length} servicio(s) de transporte disponible(s).`;
+        }
+
+        lista.innerHTML = "";
+        servicios.forEach((s) => {
+          const card = document.createElement("article");
+          card.className = "servicio-item";
+
+          const header = document.createElement("div");
+          header.className = "servicio-header";
+
+          const title = document.createElement("div");
+          title.className = "servicio-title";
+          title.textContent = s.tipo_transporte || "Servicio de transporte";
+
+          const badge = document.createElement("span");
+          badge.className = "servicio-badge";
+          badge.textContent = "Logística";
+
+          header.appendChild(title);
+          header.appendChild(badge);
+
+          const meta = document.createElement("div");
+          meta.className = "servicio-meta";
+          if (s.capacidad_carga) meta.innerHTML += `<span>Capacidad: ${s.capacidad_carga}</span>`;
+          if (s.zona_cobertura) meta.innerHTML += `<span>Zona: ${s.zona_cobertura}</span>`;
+          if (s.tipos_residuos) meta.innerHTML += `<span>Residuos: ${s.tipos_residuos}</span>`;
+          if (s.disponibilidad) meta.innerHTML += `<span>Disponibilidad: ${s.disponibilidad}</span>`;
+
+          const desc = document.createElement("p");
+          desc.className = "servicio-descripcion";
+          desc.textContent = s.descripcion || "Sin descripción adicional.";
+
+          card.appendChild(header);
+          card.appendChild(meta);
+          card.appendChild(desc);
+
+          if (s.fotos_urls && Array.isArray(s.fotos_urls) && s.fotos_urls.length > 0) {
+            const fotosWrap = document.createElement("div");
+            fotosWrap.className = "servicio-fotos";
+            s.fotos_urls.forEach((url) => {
+              const img = document.createElement("img");
+              img.src = url;
+              img.alt = "Foto del vehículo";
+              fotosWrap.appendChild(img);
+            });
+            card.appendChild(fotosWrap);
+          }
+
+  // AQUÍ VA EL NUEVO BADGE
+        const badgeDoc = document.createElement("span");
+        badgeDoc.className = "badge-doc-transporte";
+        badgeDoc.setAttribute("data-servicio-id", s.id);
+        badgeDoc.textContent = "Cargando documentación...";
+        card.appendChild(badgeDoc);
+
+          const actions = document.createElement("div");
+          actions.className = "servicio-actions";
+
+          const btnVer = document.createElement("button");
+          btnVer.textContent = "Ver servicio";
+          btnVer.className = "btn-secondary";
+          btnVer.addEventListener("click", () => {
+            window.location.href = `comprador-detalle-servicio-transporte.html?id=${s.id}`;
+          });
+
+          const btnContacto = document.createElement("button");
+          btnContacto.textContent = "Contactar proveedor logístico";
+          btnContacto.className = "btn-primary";
+          btnContacto.addEventListener("click", () => {
+            alert("Aquí irá la acción para contactar al proveedor logístico (versión futura).");
+          });
+
+          actions.appendChild(btnVer);
+          actions.appendChild(btnContacto);
+          card.appendChild(actions);
+
+          lista.appendChild(card);
+        });
+      }
+
+      await cargarServicios();
+await actualizarBadgesDocTransporte();
+
+      btnFiltros.addEventListener("click", (e) => {
+        e.preventDefault();
+        cargarServicios();
+      });
+    });
+
+    async function actualizarBadgesDocTransporte() {
+      const badges = document.querySelectorAll(".badge-doc-transporte");
+      if (!badges.length) return;
+
+      const ids = Array.from(badges).map((b) =>
+        b.getAttribute("data-servicio-id")
+      );
+
+      const { data, error } = await supabaseClient
+        .from("transporte_documentacion")
+        .select("servicio_transporte_id, tipo")
+        .in("servicio_transporte_id", ids);
+
+      if (error) {
+        console.error("Error cargando documentación transporte:", error);
+        return;
+      }
+
+      const mapa = {};
+      data.forEach((item) => {
+        if (!mapa[item.servicio_transporte_id]) {
+          mapa[item.servicio_transporte_id] = new Set();
+        }
+        mapa[item.servicio_transporte_id].add(item.tipo);
+      });
+
+      badges.forEach((badge) => {
+        const id = badge.getAttribute("data-servicio-id");
+        const tipos = mapa[id];
+
+        const tienePermiso = tipos?.has("permiso") || false;
+        const tieneLicencia = tipos?.has("licencia") || false;
+        const tieneBitacora = tipos?.has("bitacora") || false;
+
+        const completos = [tienePermiso, tieneLicencia, tieneBitacora].filter(Boolean).length;
+
+        let resumen =
+          `Permiso ${tienePermiso ? "✓" : "✗"} · Licencia ${tieneLicencia ? "✓" : "✗"} · Bitácora ${tieneBitacora ? "✓" : "✗"}`;
+
+        badge.classList.remove("ok", "parcial", "sin");
+
+        if (!tipos) {
+          badge.textContent = `Sin documentación · ${resumen}`;
+          badge.classList.add("sin");
+        } else if (completos === 3) {
+          badge.textContent = `Documentación completa · ${resumen}`;
+          badge.classList.add("ok");
+        } else {
+          badge.textContent = `Documentación parcial · ${resumen}`;
+          badge.classList.add("parcial");
+        }
+      });
+    }
+  </script>
+</body>
+</html>

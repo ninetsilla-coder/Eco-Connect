@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Eco Connect | Detalle del residuo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Estilos específicos -->
+  <style>
+    .detalle-wrapper {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 16px 40px;
+    }
+
+    .detalle-header {
+      margin-bottom: 16px;
+    }
+
+    .detalle-header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
+
+    .detalle-header p {
+      color: #4b5563;
+      font-size: 0.95rem;
+    }
+
+    .detalle-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.3fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .detalle-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .detalle-fotos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .detalle-fotos img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .detalle-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+    }
+
+    .detalle-meta {
+      font-size: 0.9rem;
+      color: #4b5563;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 8px 16px;
+      margin-bottom: 12px;
+    }
+
+    .detalle-meta span strong {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .detalle-descripcion {
+      font-size: 0.9rem;
+      color: #4b5563;
+      margin-top: 8px;
+    }
+
+    .detalle-actions {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-outline {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .detalle-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .detalle-side-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px 16px;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      border: 1px solid #e5e7eb;
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .detalle-side-card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: #111827;
+    }
+
+    .form-status {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: #6b7280;
+    }
+
+    .form-status.error {
+      color: #b91c1c;
+    }
+
+    .form-status.success {
+      color: #166534;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar reutilizada -->
+  <header class="navbar">
+    <div class="container navbar-content">
+      <div class="logo-text">
+        <span class="logo-eco">Eco</span><span class="logo-connect">Connect</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#quienes-somos">CONÓCENOS</a>
+        <a href="index.html#impacto">IMPACTO</a>
+
+        <div class="nav-item dropdown" id="menu-residuos">
+          <a href="index.html#demo-residuos" class="nav-link">RESIDUOS ▾</a>
+          <div class="dropdown-menu" id="dropdown-residuos">
+            <!-- Opciones para proveedor de residuos -->
+            <a href="publicar-residuos.html" data-role="proveedor">Publica tus residuos disponibles</a>
+            <a href="mis-residuos.html" data-role="proveedor">Mis residuos publicados</a>
+            <a href="gestion-ambiental.html" data-role="proveedor">Cumple con gestión ambiental</a>
+
+            <!-- Opciones para logística -->
+            <a href="publicar-servicio-transporte.html" data-role="logistica">Publicar servicio de transporte</a>
+            <a href="mis-servicios-transporte.html" data-role="logistica">Ver mis servicios</a>
+            <a href="transporte-responsable.html" data-role="logistica">Cumple con transporte responsable</a>
+
+            <!-- Opciones para comprador -->
+            <a href="comprador-explorar-residuos.html" data-role="comprador">Explorar residuos</a>
+            <a href="comprador-mis-intereses.html" data-role="comprador">Mis intereses</a>
+            <a href="comprador-servicios-transporte.html" data-role="comprador">Servicios de transporte</a>
+          </div>
+        </div>
+
+        <a href="index.html#beneficios">BENEFICIOS</a>
+        <a href="index.html#faq">FAQ</a>
+      </nav>
+
+      <div class="navbar-auth">
+        <button id="login-button" class="btn btn-primary">Login / Registrarse</button>
+        <span id="account-label" class="navbar-account" style="display: none;">Mi cuenta</span>
+        <button id="logout-button" class="btn btn-outline" style="display: none;">Cerrar sesión</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="detalle-wrapper">
+      <a href="comprador-explorar-residuos.html" class="btn-outline" style="margin-bottom: 12px;">&larr; Volver a explorar residuos</a>
+
+      <div class="detalle-header">
+        <h1>Detalle del residuo</h1>
+        <p>Consulta la información completa de este residuo antes de mostrar interés o contactar al proveedor.</p>
+      </div>
+
+      <p id="status-detalle-residuo" class="form-status"></p>
+
+      <div id="detalle-layout" class="detalle-layout" style="display:none;">
+        <section class="detalle-card" id="detalle-main">
+          <!-- Se rellena con JS -->
+        </section>
+
+        <aside class="detalle-side">
+          <div class="detalle-side-card" id="detalle-acciones">
+            <h3>Acciones</h3>
+            <p>Puedes contactar al proveedor o guardar este residuo en tu lista de intereses.</p>
+            <div class="detalle-actions">
+              <button id="btn-contactar" class="btn-outline">Contactar proveedor</button>
+              <button id="btn-guardar-interes" class="btn-primary">Guardar en mis intereses</button>
+            </div>
+            <p id="mensaje-interes" class="form-status"></p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- Scripts globales -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js"></script>
+
+  <!-- Script específico -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const statusEl = document.getElementById("status-detalle-residuo");
+      const layout = document.getElementById("detalle-layout");
+      const detalleMain = document.getElementById("detalle-main");
+      const btnContactar = document.getElementById("btn-contactar");
+      const btnGuardar = document.getElementById("btn-guardar-interes");
+      const msgInteres = document.getElementById("mensaje-interes");
+
+      function setMensajeInteres(texto, tipo = "") {
+        if (!msgInteres) return;
+        msgInteres.textContent = texto;
+        msgInteres.className = "form-status";
+        if (tipo === "error") msgInteres.classList.add("error");
+        if (tipo === "success") msgInteres.classList.add("success");
+      }
+
+      // 1) Obtener id desde la URL
+      const params = new URLSearchParams(window.location.search);
+      const residuoId = params.get("id");
+
+      if (!residuoId) {
+        if (statusEl) {
+          statusEl.textContent = "No se encontró el residuo solicitado.";
+          statusEl.classList.add("error");
+        }
+        return;
+      }
+
+      if (statusEl) {
+        statusEl.textContent = "Cargando detalles del residuo...";
+      }
+
+      // 2) Traer el residuo por id
+      const { data: res, error } = await supabaseClient
+        .from("residuos_publicados")
+        .select("*")
+        .eq("id", residuoId)
+        .maybeSingle();  // [web:690][web:674]
+
+      if (error) {
+        console.error("Error cargando residuo:", error);  // [web:690]
+        if (statusEl) {
+          statusEl.textContent = "Ocurrió un error al cargar el residuo.";
+          statusEl.classList.add("error");
+        }
+        return;
+      }
+
+      if (!res) {
+        if (statusEl) {
+          statusEl.textContent = "No se encontró el residuo.";
+          statusEl.classList.add("error");
+        }
+        return;
+      }
+
+      // 3) Pintar detalle
+      let fotosHtml = "";
+      if (res.fotos && Array.isArray(res.fotos) && res.fotos.length > 0) {
+        fotosHtml = `
+          <div class="detalle-fotos">
+            ${res.fotos
+              .map((url) => `<img src="${url}" alt="Foto del residuo" />`)
+              .join("")}
+          </div>
+        `;
+      }
+
+      const categoriaTexto =
+        res.categoria === "sin_procesar"
+          ? "Sin procesar"
+          : res.categoria === "procesado"
+          ? "Procesado y limpio"
+          : res.categoria || "Sin categoría";
+
+      detalleMain.innerHTML = `
+        ${fotosHtml}
+        <h2>${res.tipo || "Residuo sin nombre"}</h2>
+        <div class="detalle-meta">
+          ${res.categoria ? `<span><strong>Categoría:</strong> ${categoriaTexto}</span>` : ""}
+          ${res.cantidad ? `<span><strong>Cantidad:</strong> ${res.cantidad}</span>` : ""}
+          ${res.ubicacion ? `<span><strong>Ubicación:</strong> ${res.ubicacion}</span>` : ""}
+          ${res.frecuencia ? `<span><strong>Frecuencia:</strong> ${res.frecuencia}</span>` : ""}
+          ${res.estado_residuo ? `<span><strong>Estado del residuo:</strong> ${res.estado_residuo}</span>` : ""}
+          ${res.estado ? `<span><strong>Estado de publicación:</strong> ${res.estado}</span>` : ""}
+        </div>
+        ${
+          res.descripcion
+            ? `<p class="detalle-descripcion"><strong>Descripción:</strong> ${res.descripcion}</p>`
+            : ""
+        }
+      `;
+
+      layout.style.display = "grid";
+      if (statusEl) statusEl.textContent = "";
+
+      // 4) Botones
+      if (btnContactar) {
+        btnContactar.addEventListener("click", () => {
+          setMensajeInteres("Aquí irá la acción para contactar al proveedor (versión futura).");
+        });
+      }
+
+      if (btnGuardar) {
+        btnGuardar.addEventListener("click", async () => {
+          if (!res) return;
+
+          btnGuardar.disabled = true;
+          const textoPrevio = btnGuardar.textContent;
+          btnGuardar.textContent = "Guardando...";
+          setMensajeInteres("");
+
+          // 1) Obtener usuario logueado
+          const { data: userData, error: userError } = await supabaseClient.auth.getUser();
+          if (userError || !userData?.user) {
+            setMensajeInteres("Debes iniciar sesión como comprador para guardar intereses.", "error");
+            btnGuardar.disabled = false;
+            btnGuardar.textContent = textoPrevio;
+            return;
+          }
+
+          const user = userData.user;
+
+          // 2) Evitar duplicados
+          const { data: existe, error: existeError } = await supabaseClient
+            .from("intereses")
+            .select("id")
+            .eq("user_id", user.id)
+            .eq("tipo", "residuo")
+            .eq("residuo_id", res.id)
+            .maybeSingle();  // [web:585][web:690]
+
+          if (existeError) {
+            console.error("Error verificando interés existente:", existeError);  // [web:585]
+          }
+
+          if (existe) {
+            setMensajeInteres("Este residuo ya está en tus intereses.", "success");
+            btnGuardar.disabled = false;
+            btnGuardar.textContent = textoPrevio;
+            return;
+          }
+
+          // 3) Insertar interés
+          const { error: insertError } = await supabaseClient
+            .from("intereses")
+            .insert({
+              user_id: user.id,
+              tipo: "residuo",
+              residuo_id: res.id,
+              servicio_transporte_id: null
+            });  // [web:701]
+
+          if (insertError) {
+            console.error("Error guardando interés:", insertError);  // [web:701]
+            setMensajeInteres("No se pudo guardar en tus intereses. Intenta de nuevo.", "error");
+            btnGuardar.disabled = false;
+            btnGuardar.textContent = textoPrevio;
+            return;
+          }
+
+          setMensajeInteres("Residuo guardado en tus intereses.", "success");
+          btnGuardar.disabled = false;
+          btnGuardar.textContent = textoPrevio;
+        });
+      }
+    });
+  </script>
+</body>
+</html>
