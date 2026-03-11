@@ -1316,3 +1316,43 @@ a.btn-outline:hover,
   }
 }
 
+@media (max-width: 768px) {
+  /* Card crema ocupa todo, con menos padding */
+  .card--quienes-amplia {
+    padding: 2rem 1.5rem;
+  }
+
+  /* La mini card deja de ser absoluta y se apila debajo */
+  .card--quienes-mini {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 1.5rem;
+    min-height: auto;
+    right: auto;
+    top: auto;
+  }
+
+  .card--quienes-mini .card-title {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Impacto: cards en columna y números más chicos */
+  #impacto .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  #impacto .metric-card {
+    padding: 1.4rem 1.5rem;
+  }
+
+  #impacto .metric-card .metric-value {
+    font-size: 2.2rem;
+    word-break: break-word;   /* por si hay signos o símbolos largos */
+  }
+}
+
+
+
